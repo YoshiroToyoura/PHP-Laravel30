@@ -20,7 +20,7 @@ class ProfileController extends Controller
     
     public function edit()
     {
-      return view('admin.profile.create');
+      return view('admin.profile.edit');
     }
     
     public function update()
@@ -28,12 +28,3 @@ class ProfileController extends Controller
       return redirect('admin/profile/edit');
     }
 }
-
-
-Route::group(['prefix' => 'admin'], function() {
-  Route::get('profile/create','ProfileController@add');
-});
-
-Route::group(['prefix' => 'edit'], function() {
-  Route::get('profile/create','ProfileController@edit');
-});

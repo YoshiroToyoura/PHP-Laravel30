@@ -22,7 +22,7 @@ class NewsController extends Controller
         $form = $request->all();
         
         if (isset($form['image'])) {
-          $path = $request->file('image')->store('public/images');
+          $path = $request->file('image')->store('public/image');
           $news->image_path = basename($path);
         } else {
           $news->image_path = null;
@@ -70,7 +70,7 @@ class NewsController extends Controller
         $news->image_path = null;
         unset($news_form['remove']);
       }
-      unset($news_form['_taken']);
+      unset($news_form['_token']);
       $news->fill($news_form)->save();
       return redirect('admin/news');
     }

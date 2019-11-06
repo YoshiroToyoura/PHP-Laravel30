@@ -17,7 +17,7 @@ class ProfileController extends Controller
      
     public function create(Request $request)
     {
-       $validatedData = $request->validate([
+       $request = $request->validate([
         'name' => 'required',
         'gender' => 'required',
         'hobby' => 'required',
@@ -25,13 +25,19 @@ class ProfileController extends Controller
         ]);
         
         $profiles = new Profile();
-        $profiles->name = $validatedData['name'];
-        $profiles->gender = $validatedData['gender'];
-        $profiles->hobby = $validatedData['hobby'];
-        $profiles->introduction = $validatedData['introduction'];
+        $form = $request->all();
+        
+        unset($form['_token']);
+        
+        $profiles->fill($form);
+        
+//      $profiles->name = $form['name'];
+//      $profiles->gender = $form['gender'];
+//      $profiles->hobby = $form['hobby'];
+//      $profiles->introduction = $form['introduction'];
         
         $profiles->save();
-      return redirect('admin/profile/create');
+        return redirect('admin/profile/create');
       
     }
     

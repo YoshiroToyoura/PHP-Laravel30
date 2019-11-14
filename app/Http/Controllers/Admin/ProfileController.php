@@ -58,10 +58,10 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
       $this->validate($request,Profile::$rules);
-      $profiles = Profile::find($request->id);
+      $profile = Profile::find($request->id);
       $profiles_form = $request->all();
       unset($profiles_form['_token']);
-      $profiles->fill($profiles_form)->save();
+      $profile->fill($profiles_form)->save();
       
       $profilehistory = new Profilehistory;
       $profilehistory->profile_id = $profile->id;

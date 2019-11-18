@@ -36,16 +36,13 @@
                     {{ $post->updated_at->format('Y年m月d日') }}
                   </div>
                   <div class="title">
-                    {{ \Str::limit($post->title, 150) }}
+                    {{ \Str::limit($headline->name, 70) }}
                   </div>
                   <div class="body mt-3">
-                    {{ \Str::limit($post->body, 1500) }}
+                    <p class="gender mx-auto"> {{ \Str::limit($feadline->gender, 70) }}</p>
+                    <p class="hobby mx-auto">{{ \Str::limit($post->hobby, 70) }}</p>
+                    <p class="introduction mx-auto">{{ \Str::limit($post->hobby, 650) }}</p>
                   </div>
-                </div>
-                <div class="image col-md-6 text-right mt-4">
-                  @if ($post->image_path)
-                    <img src="{{ asset('storage/image/' . $post->image_path) }}">
-                  @endif
                 </div>
               </div>
             </div>

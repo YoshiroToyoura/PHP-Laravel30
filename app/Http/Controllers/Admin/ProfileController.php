@@ -21,12 +21,7 @@ class ProfileController extends Controller
      
     public function create(Request $request)
     {
-       $request = $request->validate([
-        'name' => 'required',
-        'gender' => 'required',
-        'hobby' => 'required',
-        'introduction' => 'required',
-        ]);
+        $this->validate($request,Profile::$rules);
         
         $profiles = new Profile();
         $form = $request->all();
@@ -68,6 +63,6 @@ class ProfileController extends Controller
       $profilehistory->edited_at = Carbon::now();
       $profilehistory->save();
       
-      return redirect('admin/profile/create');
+      return redirect('admin/profile/edit?id='. $request->id);
     }
 }
